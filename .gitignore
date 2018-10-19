@@ -15,6 +15,3 @@ CMakeCache.txt
 *.ilk
 *.pdb
 *.lib
-*.json
-*.txt
-*.xml
