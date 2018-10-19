@@ -5,7 +5,7 @@
 #include "QObject"
 #include "QGraphicsPixmapItem"
 
-class IViewGraphicsPixmapItem : public QObject, public QGraphicsPixmapItem, public IView
+class BT_INTERFACES_API IViewGraphicsPixmapItem : public QObject, public QGraphicsPixmapItem, public IView
 {
     Q_OBJECT
 public:

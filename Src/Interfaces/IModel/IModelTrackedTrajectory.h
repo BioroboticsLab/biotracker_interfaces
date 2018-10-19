@@ -12,7 +12,7 @@
  *
  * Its the Plugin Developers full responsibility to choos an internal data structure. This could be e.g. Map, List or Vector.
  */
-class IModelTrackedTrajectory : public IModelTrackedComponent
+class BT_INTERFACES_API IModelTrackedTrajectory : public IModelTrackedComponent
 {
     Q_OBJECT
     Q_PROPERTY(QList<IModelTrackedComponent*> childNodes READ getChildNodes() WRITE setChildNodes STORED hasChildNodes);

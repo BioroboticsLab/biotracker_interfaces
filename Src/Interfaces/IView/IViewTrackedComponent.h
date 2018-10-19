@@ -10,7 +10,7 @@
  * A IViewTrackedComponent has a QGraphicsItem.
  */
 
-class IViewTrackedComponent : public QGraphicsObject, public IView
+class BT_INTERFACES_API IViewTrackedComponent : public QGraphicsObject, public IView
 {
     Q_OBJECT
 public:

@@ -5,10 +5,10 @@
 #include "QMap"
 #include "QString"
 #include "Interfaces/ENUMS.h"
-
+#include <Interfaces/API.h>
 
 class IController;
-class IBioTrackerContext : public QObject
+class BT_INTERFACES_API IBioTrackerContext : public QObject
 {
     Q_OBJECT
 public:

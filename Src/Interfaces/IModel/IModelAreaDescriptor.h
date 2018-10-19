@@ -4,7 +4,7 @@
 #include <string.h>
 #include <cv.h>
 
-class IModelAreaDescriptor :public IModel
+class BT_INTERFACES_API IModelAreaDescriptor :public IModel
 {
 	Q_OBJECT
 

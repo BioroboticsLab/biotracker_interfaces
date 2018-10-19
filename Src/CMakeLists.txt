@@ -21,7 +21,7 @@ set_target_properties(${TN} PROPERTIES
     CXX_EXTENSIONS NO
 )
 
-target_compile_definitions(${TN} PRIVATE RF_INTERFACES_EXPORT)
+target_compile_definitions(${TN} PRIVATE BT_INTERFACES_EXPORT)
 
 target_sources(${TN}
 PRIVATE
@@ -48,6 +48,7 @@ PRIVATE
 )
 
 set(${TN}_PUBLIC_HEADERS
+    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/API.h"
     "${CMAKE_CURRENT_LIST_DIR}/Interfaces/ENUMS.h"
     "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IBioTrackerContext.h"
     "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IBioTrackerPlugin.h"

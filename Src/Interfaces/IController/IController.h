@@ -10,9 +10,9 @@
 #include "Interfaces/IModel/IModel.h"
 #include "Interfaces/IBioTrackerContext.h"
 #include "Interfaces/ENUMS.h"
+#include <Interfaces/API.h>
 
-
-class IController : public QObject {
+class BT_INTERFACES_API IController : public QObject {
     Q_OBJECT
   public:
     explicit IController(QObject *parent = 0, IBioTrackerContext *context = 0, ENUMS::CONTROLLERTYPE ctr = ENUMS::CONTROLLERTYPE::NO_CTR);

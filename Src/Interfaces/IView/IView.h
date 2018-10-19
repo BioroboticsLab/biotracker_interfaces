@@ -3,9 +3,9 @@
 
 #include "Interfaces/IModel/IModel.h"
 #include "Interfaces/ENUMS.h"
-
+#include <Interfaces/API.h>
 class IController;
-class IView {
+class BT_INTERFACES_API IView {
 
   public:
     IView(IController *controller = 0, IModel *model = 0);

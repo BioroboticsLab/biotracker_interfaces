@@ -5,7 +5,7 @@
 
 // #include "biotracker/util/platform.h"
 
-class IObject : public IModel {
+class BT_INTERFACES_API IObject : public IModel {
     Q_OBJECT
   public:
     IObject();

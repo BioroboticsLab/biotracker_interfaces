@@ -4,8 +4,9 @@
 #include <qobject.h>
 #include <QList>
 #include <QObject>
+#include "IModel.h"
 
-class Serializable : public QObject
+class BT_INTERFACES_API Serializable : public IModel
 {
 	Q_OBJECT
 };

@@ -4,7 +4,7 @@
 #include "QGraphicsView"
 #include "IView.h"
 
-class IViewGraphicsView : public QGraphicsView, public IView
+class BT_INTERFACES_API IViewGraphicsView : public QGraphicsView, public IView
 {
     Q_OBJECT
 public:

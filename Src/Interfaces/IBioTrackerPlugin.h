@@ -9,8 +9,9 @@
 #include "Interfaces/IModel/IModelTrackedComponentFactory.h"
 #include "opencv2/core/core.hpp"
 #include "memory"
+#include <Interfaces/API.h>
 
-class IBioTrackerPlugin : public QObject
+class BT_INTERFACES_API IBioTrackerPlugin : public QObject
 {
     Q_OBJECT
 public:

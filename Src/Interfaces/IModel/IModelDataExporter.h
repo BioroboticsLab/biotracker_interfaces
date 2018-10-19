@@ -10,7 +10,7 @@
 * Besides serializing to files also includes deserializing from files
 * Current exporters are CSV, generic and JSON.
 */
-class IModelDataExporter :public IModel
+class BT_INTERFACES_API IModelDataExporter :public IModel
 {
 	Q_OBJECT
 

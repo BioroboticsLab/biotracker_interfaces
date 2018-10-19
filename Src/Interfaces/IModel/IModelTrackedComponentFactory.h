@@ -4,7 +4,7 @@
 #include "Interfaces/IModel/IModel.h"
 #include "Interfaces/IModel/IModelTrackedComponent.h"
 
-class IModelTrackedComponentFactory : public IModel
+class BT_INTERFACES_API IModelTrackedComponentFactory : public IModel
 {
     Q_OBJECT
 

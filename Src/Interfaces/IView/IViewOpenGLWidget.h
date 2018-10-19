@@ -7,7 +7,7 @@
 #include <QOpenGLFunctions>
 
 
-class IViewOpenGLWidget: public QOpenGLWidget, protected QOpenGLFunctions, public IView {
+class BT_INTERFACES_API IViewOpenGLWidget: public QOpenGLWidget, protected QOpenGLFunctions, public IView {
   public:
     IViewOpenGLWidget(QWidget *parent = 0, IController *controller = 0, IModel *model = 0);
     ~IViewOpenGLWidget();

@@ -23,7 +23,7 @@
 *	Blank component
 */
 
-class IModelTrackedComponent : public IModel
+class BT_INTERFACES_API IModelTrackedComponent : public IModel
 {
 	Q_OBJECT
 	/*
@@ -85,7 +85,7 @@ QDataStream &operator>>(QDataStream &in, IModelTrackedComponent &painting);
 * and the width and height (in px and _coordinateUnit)
 *******************************************************************************/
 
-class IModelComponentEuclidian2D : public IModelTrackedComponent {
+class BT_INTERFACES_API IModelComponentEuclidian2D : public IModelTrackedComponent {
 public:
 	Q_OBJECT
 	/*
@@ -172,7 +172,7 @@ protected:
 * It expands it from 2D to 3D.
 * Reserved for future 3D tracking.
 *******************************************************************************/
-class IModelComponentEuclidian3D : public IModelComponentEuclidian2D {
+class BT_INTERFACES_API IModelComponentEuclidian3D : public IModelComponentEuclidian2D {
 public:
 	Q_OBJECT
 	/*
@@ -224,7 +224,7 @@ protected:
 * This class is derived from IModelComponentEuclidian2D.
 * It expands it to 2D with timestamps.
 *******************************************************************************/
-class IModelComponentTemporal2D : public IModelComponentEuclidian2D {
+class BT_INTERFACES_API IModelComponentTemporal2D : public IModelComponentEuclidian2D {
 public:
     Q_OBJECT 
 	/*
@@ -263,7 +263,7 @@ protected:
 * A circular point will be visualized with the radius of min(width,height)
 * The position is the center of the point.
 *******************************************************************************/
-class IModelTrackedPoint : public IModelComponentTemporal2D
+class BT_INTERFACES_API IModelTrackedPoint : public IModelComponentTemporal2D
 {
 	Q_OBJECT
 
@@ -282,7 +282,7 @@ public:
 * An irregular polygon defined by a list of polygons will be visualized.
 *******************************************************************************/
 
-class IModelTrackedPolygon : public IModelComponentTemporal2D
+class BT_INTERFACES_API IModelTrackedPolygon : public IModelComponentTemporal2D
 {
 	Q_OBJECT
 
@@ -311,7 +311,7 @@ protected:
 * This interface can be visualized in the core application if the tracking data implements it.
 * An ellipse will be visualized.  The position is the center of the ellipse.
 *******************************************************************************/
-class IModelTrackedEllipse : public IModelTrackedPoint
+class BT_INTERFACES_API IModelTrackedEllipse : public IModelTrackedPoint
 {
 	Q_OBJECT
 
@@ -330,7 +330,7 @@ public:
 * This interface can be visualized in the core application if the tracking data implements it.
 * A rectangle will be visualized. The position is the center of the rectangle.
 *******************************************************************************/
-class IModelTrackedRectangle : public IModelTrackedPoint
+class BT_INTERFACES_API IModelTrackedRectangle : public IModelTrackedPoint
 {
 	Q_OBJECT
 	

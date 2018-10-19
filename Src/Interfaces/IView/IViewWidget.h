@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "Interfaces/IView/IView.h"
 
-class IViewWidget : public QWidget, public IView {
+class BT_INTERFACES_API IViewWidget : public QWidget, public IView {
     Q_OBJECT
   public:
     explicit IViewWidget(QWidget *parent = 0, IController *controller = 0, IModel *model = 0);

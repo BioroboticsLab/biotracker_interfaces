@@ -4,8 +4,8 @@
 #include <QObject>
 
 #include "memory"
-
-class IModel : public QObject {
+#include <Interfaces/API.h>
+class BT_INTERFACES_API IModel : public QObject {
     Q_OBJECT
   public:
     explicit IModel(QObject *parent = 0);
