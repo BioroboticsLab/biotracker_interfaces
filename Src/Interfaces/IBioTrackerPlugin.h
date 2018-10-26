@@ -11,6 +11,7 @@
 #include "memory"
 #include <Interfaces/API.h>
 
+
 class BT_INTERFACES_API IBioTrackerPlugin : public QObject
 {
     Q_OBJECT

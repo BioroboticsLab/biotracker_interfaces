@@ -1,8 +1,8 @@
 #ifndef ITRACKEDCOMPONENTFACTORY_H
 #define ITRACKEDCOMPONENTFACTORY_H
 
-#include "Interfaces/IModel/IModel.h"
-#include "Interfaces/IModel/IModelTrackedComponent.h"
+#include "IModel.h"
+#include "IModelTrackedComponent.h"
 
 class BT_INTERFACES_API IModelTrackedComponentFactory : public IModel
 {

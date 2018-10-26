@@ -2,14 +2,15 @@
 #define ENUMS_H
 
 #include <QObject>
+#include <Interfaces/API.h>
 
-class ENUMS : public QObject
+class BT_INTERFACES_API ENUMS : public QObject
 {
     Q_OBJECT
 public:
 
 
-    enum CONTROLLERTYPE {
+    enum CONTROLLERTYPE : unsigned int{
 		NO_CTR, 
 		MAINWINDOW, 
 		TEXTUREOBJECT,
@@ -26,9 +27,9 @@ public:
 		COMMANDS,
 		NOTIFICATION
 	};
-
     Q_ENUM(CONTROLLERTYPE)
-	enum COREPERMISSIONS { 
+
+	enum COREPERMISSIONS : unsigned int{ 
 		COMPONENTVIEW, 
 		COMPONENTMOVE,
 		COMPONENTREMOVE, 
@@ -36,10 +37,7 @@ public:
 		COMPONENTADD,
 		COMPONENTROTATE
 	};
-	Q_ENUM(COREPERMISSIONS)
-
-    explicit ENUMS(QObject *parent = 0);
-	
+	Q_ENUM(COREPERMISSIONS)	
 };
 
 #endif // ENUMS_H

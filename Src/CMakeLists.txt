@@ -25,6 +25,7 @@ target_compile_definitions(${TN} PRIVATE BT_INTERFACES_EXPORT)
 
 target_sources(${TN}
 PRIVATE
+    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/ENUMS.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IBioTrackerContext.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IBioTrackerPlugin.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IController/IController.cpp"
