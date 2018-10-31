@@ -250,9 +250,6 @@ public:
     virtual QString getTimeString() = 0;
     virtual bool hasTimeString() = 0;
 
-protected:
-    qint64 _time;                                /**< UNIX timestamp */
-    QString _timeString;                         /**< timestamp a formatted as string */
 };
 
 /***************************************************************************//**
