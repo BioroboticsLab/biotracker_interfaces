@@ -57,29 +57,20 @@ public:
 	*/
 	virtual IModelTrackedComponent *getLastChild() = 0;
 
-	void  setTime(std::chrono::system_clock::time_point t) { _time = t; };
-	std::chrono::system_clock::time_point  getTime() { return _time; };
+	virtual void  setTime(std::chrono::system_clock::time_point t) { _time = t; };
+	virtual std::chrono::system_clock::time_point  getTime() { return _time; };
 
+    virtual QList<IModelTrackedComponent*> getChildNodes() = 0;
+    virtual void setChildNodes(QList<IModelTrackedComponent*> n) = 0;
+    virtual bool hasChildNodes() = 0;
 
-    QList<IModelTrackedComponent*> getChildNodes() {
-        return _TrackedComponents;
-    }
-    void setChildNodes(QList<IModelTrackedComponent*> n) {
-        _TrackedComponents = n;
-    }
-    bool hasChildNodes() {
-        return true;
-    }
-
-	// ITrackedComponent interface
 public:
-	void operate();
-	std::chrono::system_clock::time_point _time;
+	virtual void operate();
 
 protected:
 	static int nextID;
+	std::chrono::system_clock::time_point _time;
 
-    QList<IModelTrackedComponent*> _TrackedComponents;
 };
 
 #endif // ITRACKEDOTRAJECTORY_H
