@@ -4,66 +4,68 @@ stages:
   - deploy
 
 
-.base ubuntu-18.04: &base_ubuntu_18_04
+.ubuntu-18.04:
   tags: [ linux, docker ]
-  image: git.imp.fu-berlin.de:5000/bioroboticslab/robofish/docker:ubuntu-18.04
+  image: git.imp.fu-berlin.de:5000/bioroboticslab/robofish/docker:devel-ubuntu18.04
 
-.base windows: &base_windows
+.windows:
   tags: [ windows, docker ]
-  image: git.imp.fu-berlin.de:5000/bioroboticslab/robofish/docker:windows
+  image: git.imp.fu-berlin.de:5000/bioroboticslab/robofish/docker:devel-windows
 
 
-.build ubuntu-18.04: &build_ubuntu_18_04
+.gcc8: &gcc8
+  CC: gcc-8
+  CXX: g++-8
+
+.msvc15.9: &msvc15_9
+  VSDevEnv -arch=amd64 -vcvars_ver="14.16"
+
+.debug: &debug
+  CMAKE_BUILD_TYPE: Debug
+
+.release: &release
+  CMAKE_BUILD_TYPE: Release
+
+
+.build ubuntu-18.04:
+  extends: .ubuntu-18.04
   stage: build
-  <<: *base_ubuntu_18_04
-  variables:
-    CC: gcc-8
-    CXX: g++-8
   artifacts:
     paths:
       - build
     expire_in: 1 day
+  script:
+    - cmake -Bbuild -H. -DCMAKE_BUILD_TYPE="$CMAKE_BUILD_TYPE" -G Ninja -DCMAKE_SUPPRESS_REGENERATION=ON -DCMAKE_SKIP_PACKAGE_ALL_DEPENDENCY=ON
+    - ninja -C build
 
-.build windows: &build_windows
+.build windows:
+  extends: .windows
   stage: build
-  <<: *base_windows
   artifacts:
     paths:
       - build
     expire_in: 1 day
   before_script:
-    - . /Library.ps1
-    - VSDevEnv -arch=amd64 -vcvars_ver="14.15"
+    - . $Profile
+    - *msvc15_9
+  script:
+    - cmake -Bbuild "-H." -DCMAKE_BUILD_TYPE="$CMAKE_BUILD_TYPE" -G Ninja -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_DIR/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET="$env:VCPKG_TRIPLET" -DCMAKE_SUPPRESS_REGENERATION=ON -DCMAKE_SKIP_PACKAGE_ALL_DEPENDENCY=ON
+    - ninja -C build
 
 build ubuntu-18.04:
-  <<: *build_ubuntu_18_04
-  script:
-    - cmake -Bbuild -H. -DCMAKE_BUILD_TYPE=Release -G Ninja
-    - ninja -C build
+  extends: .build ubuntu-18.04
+  variables:
+    <<: [ *gcc8, *release ]
 
 build windows:
-  <<: *build_windows
-  script:
-    - cmake -Bbuild "-H." -DCMAKE_BUILD_TYPE=Release -G Ninja -DCMAKE_PREFIX_PATH="$Env:VCPKG_INSTALL_DIR"
-    - ninja -C build
-
-build windows[cuda]:
-  <<: *build_windows
-  script:
-    - cmake -Bbuild "-H." -DCMAKE_BUILD_TYPE=Release -G Ninja -DCMAKE_PREFIX_PATH="$Env:VCPKG_CUDA_INSTALL_DIR"
-    - ninja -C build
+  extends: .build windows
+  variables:
+    <<: [ *release ]
 
 build windows[debug]:
-  <<: *build_windows
-  script:
-    - cmake -Bbuild "-H." -DCMAKE_BUILD_TYPE=Debug -G Ninja -DCMAKE_PREFIX_PATH="$Env:VCPKG_INSTALL_DIR"
-    - ninja -C build
-
-build windows[debug,cuda]:
-  <<: *build_windows
-  script:
-    - cmake -Bbuild "-H." -DCMAKE_BUILD_TYPE=Debug -G Ninja -DCMAKE_PREFIX_PATH="$Env:VCPKG_CUDA_INSTALL_DIR"
-    - ninja -C build
+  extends: .build windows
+  variables:
+    <<: [ *debug ]
 
 
 .package: &package
@@ -76,32 +78,27 @@ build windows[debug,cuda]:
     - ninja -C build package
 
 package ubuntu-18.04:
-  <<: *base_ubuntu_18_04
+  extends: .ubuntu-18.04
   dependencies:
     - build ubuntu-18.04
   <<: *package
 
 package windows:
-  <<: *base_windows
+  extends: .windows
   dependencies:
     - build windows
   <<: *package
 
-package windows[cuda]:
-  <<: *base_windows
-  dependencies:
-    - build windows[cuda]
-  <<: *package
-
 package windows[debug]:
-  <<: *base_windows
+  extends: .windows
   dependencies:
     - build windows[debug]
   <<: *package
 
-package windows[debug,cuda]:
-  <<: *base_windows
-  dependencies:
-    - build windows[debug,cuda]
-  <<: *package
 
+trigger dependents:
+  extends: .ubuntu-18.04
+  stage: deploy
+  script:
+    - . /etc/profile.d/robofish.sh
+    - gitlab-trigger-pipeline bioroboticslab%2Fbiotracker%2Futility $CI_JOB_TOKEN master
