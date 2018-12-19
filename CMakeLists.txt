@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 3.13)
 
-file(READ version.txt Version)
-#exec_program("git" ${CMAKE_CURRENT_SOURCE_DIR} ARGS "describe --tags --abbrev=0" OUTPUT_VARIABLE GIT_TAG)
+file(READ VERSION PROJECT_VERSION)
 
 project(biotracker-interfaces
-    VERSION ${Version}
+    VERSION ${PROJECT_VERSION}
     LANGUAGES CXX)
 
 include(GNUInstallDirs)
@@ -52,6 +51,6 @@ install(
 )
 
 set(CPACK_GENERATOR "TXZ")
-set(CPACK_PACKAGE_VERSION ${Version})
+set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
 
 include(CPack)
