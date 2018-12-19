@@ -1,5 +1,4 @@
-#ifndef IBIOTRACKERPLUGIN_H
-#define IBIOTRACKERPLUGIN_H
+#pragma once
 
 #include "QObject"
 
@@ -68,5 +67,3 @@ public Q_SLOTS:
 #define IBioTrackerPlugin_iid "de.fu-berlin.mi.biorobotics.IBioTrackerPlugin"
 
 Q_DECLARE_INTERFACE(IBioTrackerPlugin, IBioTrackerPlugin_iid)
-
-#endif // IBIOTRACKERPLUGIN_H

@@ -1,5 +1,4 @@
-#ifndef IVIEWTRACKEDCOMPONENT_H
-#define IVIEWTRACKEDCOMPONENT_H
+#pragma once
 
 #include "IView.h"
 #include "QGraphicsObject"
@@ -31,5 +30,3 @@ public Q_SLOTS:
   virtual void getNotified() = 0;
 
 };
-
-#endif // IVIEWTRACKEDCOMPONENT_H

@@ -1,5 +1,4 @@
-#ifndef IGRAPHICSPIXMAPITEM_H
-#define IGRAPHICSPIXMAPITEM_H
+#pragma once
 
 #include "IView.h"
 #include "QObject"
@@ -18,5 +17,3 @@ public:
 public Q_SLOTS:
   virtual void getNotified() = 0;
 };
-
-#endif // IGRAPHICSPIXMAPITEM_H

@@ -1,5 +1,4 @@
-#ifndef IVIEWWIDGET_H
-#define IVIEWWIDGET_H
+#pragma once
 
 #include <QWidget>
 #include "Interfaces/IView/IView.h"
@@ -17,5 +16,3 @@ class BT_INTERFACES_API IViewWidget : public QWidget, public IView {
   private:
     void connectModelView();
 };
-
-#endif // IVIEWWIDGET_H

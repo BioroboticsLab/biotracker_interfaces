@@ -1,5 +1,4 @@
-#ifndef ITRACKEDCOMPONENT_H
-#define ITRACKEDCOMPONENT_H
+#pragma once
 
 #include "IModel.h"
 #include <chrono>
@@ -337,5 +336,3 @@ public:
 	*/
 	IModelTrackedRectangle(QObject *parent = 0);
 };
-
-#endif // ITRACKEDCOMPONENT_H

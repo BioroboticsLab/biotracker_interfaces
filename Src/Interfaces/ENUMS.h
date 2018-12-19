@@ -1,5 +1,4 @@
-#ifndef ENUMS_H
-#define ENUMS_H
+#pragma once
 
 #include <QObject>
 #include <Interfaces/API.h>
@@ -40,4 +39,3 @@ public:
 	Q_ENUM(COREPERMISSIONS)	
 };
 
-#endif // ENUMS_H

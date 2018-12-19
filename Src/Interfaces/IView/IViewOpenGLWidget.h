@@ -1,5 +1,4 @@
-#ifndef IVIEWOPENGLWIDGET_H
-#define IVIEWOPENGLWIDGET_H
+#pragma once
 
 #include "Interfaces/IView/IView.h"
 #include <QOpenGLWidget>
@@ -22,4 +21,3 @@ class BT_INTERFACES_API IViewOpenGLWidget: public QOpenGLWidget, protected QOpen
     void initializeGL() override;
 };
 
-#endif // IVIEWOPENGLWIDGET_H

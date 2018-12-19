@@ -1,5 +1,4 @@
-#ifndef IVIEWGRAPHICSSCENE_H
-#define IVIEWGRAPHICSSCENE_H
+#pragma once
 
 #include "QGraphicsScene"
 #include "IView.h"
@@ -20,5 +19,3 @@ protected:
 public Q_SLOTS:
   virtual void getNotified() = 0;
 };
-
-#endif // IVIEWGRAPHICSSCENE_H

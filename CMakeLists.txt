@@ -1,9 +1,10 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.13)
 
-exec_program("git" ${CMAKE_CURRENT_SOURCE_DIR} ARGS "describe --tags --abbrev=0" OUTPUT_VARIABLE GIT_TAG)
+file(READ version.txt Version)
+#exec_program("git" ${CMAKE_CURRENT_SOURCE_DIR} ARGS "describe --tags --abbrev=0" OUTPUT_VARIABLE GIT_TAG)
 
-project(BT_Interfaces
-    VERSION ${GIT_TAG}
+project(biotracker-interfaces
+    VERSION ${Version}
     LANGUAGES CXX)
 
 include(GNUInstallDirs)
@@ -13,33 +14,14 @@ set(INSTALL_LIBDIR ${CMAKE_INSTALL_LIBDIR} CACHE PATH "Installation directory fo
 set(INSTALL_INCLUDEDIR ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME} CACHE PATH "Installation directory for header files")
 set(INSTALL_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME} CACHE STRING "Installation directory for cmake configuration files")
 
-set(TN BT_Interfaces)
-add_library(${TN} SHARED)
-set_target_properties(${TN} PROPERTIES OUTPUT_NAME bt_interfaces)
-if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-  set_target_properties(${TN} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS true)
-endif()
- 
-include(Src/CMakeLists.txt)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
+include(Headers)
 
-install(
-    TARGETS
-        BT_Interfaces
-    EXPORT
-        ${PROJECT_NAME}Targets
-    RUNTIME DESTINATION "${INSTALL_BINDIR}"
-    LIBRARY DESTINATION "${INSTALL_LIBDIR}"
-    ARCHIVE DESTINATION "${INSTALL_LIBDIR}"
-)
-foreach(file ${BT_Interfaces_PUBLIC_HEADERS})
-    file(RELATIVE_PATH rel_path "${CMAKE_CURRENT_LIST_DIR}/Src" ${file})
-    get_filename_component(install_path ${rel_path} DIRECTORY)
-    install(FILES ${file} DESTINATION "${INSTALL_INCLUDEDIR}/${install_path}")
-endforeach()
+add_subdirectory(Src)
 
 export(
     TARGETS
-        BT_Interfaces
+        ${PROJECT_NAME}
     FILE "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Targets.cmake"
 )
 
@@ -69,14 +51,7 @@ install(
     DESTINATION ${INSTALL_CONFIGDIR}
 )
 
-install(
-    FILES
-        ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Deploy.cmake
-        ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Windeployqt.cmake
-    DESTINATION ${INSTALL_CONFIGDIR}/Modules/${PROJECT_NAME}
-)
-
 set(CPACK_GENERATOR "TXZ")
-set(CPACK_PACKAGE_VERSION ${GIT_TAG})
+set(CPACK_PACKAGE_VERSION ${Version})
 
 include(CPack)

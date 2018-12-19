@@ -1,5 +1,4 @@
-#ifndef IVIEWMAINWINDOW_H
-#define IVIEWMAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 #include "Interfaces/IView/IView.h"
@@ -13,5 +12,3 @@ class BT_INTERFACES_API IViewMainWindow : public QMainWindow, public IView {
     void setNewModel(IModel *model);
     void connectModelView();
 };
-
-#endif // IVIEWMAINWINDOW_H

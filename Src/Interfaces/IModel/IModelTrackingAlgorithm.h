@@ -1,5 +1,4 @@
-#ifndef ITRACKINGALGORITHM_H
-#define ITRACKINGALGORITHM_H
+#pragma once
 
 #include "IModel.h"
 #include "opencv2/core/core.hpp"
@@ -17,5 +16,3 @@ signals:
 
 
 };
-
-#endif // ITRACKINGALGORITHM_H

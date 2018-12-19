@@ -1,5 +1,4 @@
-#ifndef ITRACKEDCOMPONENTFACTORY_H
-#define ITRACKEDCOMPONENTFACTORY_H
+#pragma once
 
 #include "IModel.h"
 #include "IModelTrackedComponent.h"
@@ -23,5 +22,3 @@ protected:
 	virtual IModelTrackedComponent *createTrackedTrajectory(QString name) = 0;
 
 };
-
-#endif // ITRACKEDCOMPONENTFACTORY_H

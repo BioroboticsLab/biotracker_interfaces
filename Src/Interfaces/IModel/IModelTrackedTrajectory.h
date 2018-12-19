@@ -1,5 +1,4 @@
-#ifndef ITRACKEDOTRAJECTORY_H
-#define ITRACKEDOTRAJECTORY_H
+#pragma once
 
 #include "Interfaces/IModel/IModelTrackedComponent.h"
 
@@ -72,5 +71,3 @@ protected:
 	std::chrono::system_clock::time_point _time;
 
 };
-
-#endif // ITRACKEDOTRAJECTORY_H

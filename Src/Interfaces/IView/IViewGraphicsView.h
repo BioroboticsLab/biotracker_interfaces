@@ -1,5 +1,4 @@
-#ifndef IGRAPHICSVIEW_H
-#define IGRAPHICSVIEW_H
+#pragma once
 
 #include "QGraphicsView"
 #include "IView.h"
@@ -20,5 +19,3 @@ protected:
 public Q_SLOTS:
   virtual void getNotified() = 0;
 };
-
-#endif // IGRAPHICSVIEW_H

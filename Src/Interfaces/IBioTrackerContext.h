@@ -1,5 +1,4 @@
-#ifndef IBIOTRACKERCONTEXT_H
-#define IBIOTRACKERCONTEXT_H
+#pragma once
 
 #include <QObject>
 #include "QMap"
@@ -30,5 +29,3 @@ protected:
 
 
 };
-
-#endif // IBIOTRACKERCONTEXT_H

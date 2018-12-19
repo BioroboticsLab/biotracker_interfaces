@@ -2,73 +2,91 @@
 #### Biotracker: Interfaces
 ##############################################################
 
-target_include_directories(${TN} PUBLIC
+set(target ${PROJECT_NAME})
+add_library(${target} SHARED)
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+  set_target_properties(${target} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS true)
+endif()
+
+install(
+    TARGETS
+        ${PROJECT_NAME}
+    EXPORT
+        ${PROJECT_NAME}Targets
+    RUNTIME DESTINATION "${INSTALL_BINDIR}"
+    LIBRARY DESTINATION "${INSTALL_LIBDIR}"
+    ARCHIVE DESTINATION "${INSTALL_LIBDIR}"
+)
+
+target_include_directories(${target} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
     $<INSTALL_INTERFACE:${INSTALL_INCLUDEDIR}>
 )
 
-find_package(Qt5 REQUIRED COMPONENTS Core Gui Widgets OpenGL Xml Network)
-target_link_libraries(${TN}  Qt5::Core Qt5::Gui Qt5::Xml Qt5::Network Qt5::Widgets)
+find_package(Qt5 REQUIRED COMPONENTS Core Gui Widgets OpenGL)
+target_link_libraries(${target}  Qt5::Core Qt5::Gui Qt5::Widgets)
 
 find_package(OpenCV 3 REQUIRED)
-target_link_libraries(${TN} ${OpenCV_LIBS})
+target_link_libraries(${target} ${OpenCV_LIBS})
 
-set_target_properties(${TN} PROPERTIES POSITION_INDEPENDENT_CODE ON)
-set_target_properties(${TN} PROPERTIES AUTOMOC ON AUTOUIC ON AUTORCC ON)
-set_target_properties(${TN} PROPERTIES
+set_target_properties(${target} PROPERTIES AUTOMOC ON AUTOUIC ON AUTORCC ON)
+set_target_properties(${target} PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED YES
     CXX_EXTENSIONS NO
 )
 
-target_compile_definitions(${TN} PRIVATE BT_INTERFACES_EXPORT)
+target_compile_definitions(${target} PRIVATE BT_INTERFACES_EXPORT)
 
-target_sources(${TN}
-PRIVATE
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/ENUMS.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IBioTrackerContext.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IBioTrackerPlugin.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IController/IController.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/IModel.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/IModelAreaDescriptor.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/IModelDataExporter.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/IModelTrackedComponent.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/IModelTrackedComponentFactory.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/IModelTrackedTrajectory.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/IModelTrackingAlgorithm.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/IObject.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/Serializable.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IView/IView.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IView/IViewGraphicsPixmapItem.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IView/IViewGraphicsScene.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IView/IViewGraphicsView.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IView/IViewMainWindow.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IView/IViewOpenGLWidget.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IView/IViewTrackedComponent.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IView/IViewWidget.cpp"
+target_sources(${target}
+    PRIVATE
+    "Interfaces/ENUMS.cpp"
+    "Interfaces/IBioTrackerContext.cpp"
+    "Interfaces/IBioTrackerPlugin.cpp"
+    "Interfaces/IController/IController.cpp"
+    "Interfaces/IModel/IModel.cpp"
+    "Interfaces/IModel/IModelAreaDescriptor.h"
+    "Interfaces/IModel/IModelDataExporter.cpp"
+    "Interfaces/IModel/IModelTrackedComponent.cpp"
+    "Interfaces/IModel/IModelTrackedComponentFactory.cpp"
+    "Interfaces/IModel/IModelTrackedTrajectory.cpp"
+    "Interfaces/IModel/IModelTrackingAlgorithm.cpp"
+    "Interfaces/IModel/IObject.cpp"
+    "Interfaces/IModel/Serializable.cpp"
+    "Interfaces/IView/IView.cpp"
+    "Interfaces/IView/IViewGraphicsPixmapItem.cpp"
+    "Interfaces/IView/IViewGraphicsScene.cpp"
+    "Interfaces/IView/IViewGraphicsView.cpp"
+    "Interfaces/IView/IViewMainWindow.cpp"
+    "Interfaces/IView/IViewOpenGLWidget.cpp"
+    "Interfaces/IView/IViewTrackedComponent.cpp"
+    "Interfaces/IView/IViewWidget.cpp"
 )
 
-set(${TN}_PUBLIC_HEADERS
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/API.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/ENUMS.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IBioTrackerContext.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IBioTrackerPlugin.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IController/IController.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/IModel.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/IModelAreaDescriptor.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/IModelDataExporter.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/IModelTrackedComponent.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/IModelTrackedComponentFactory.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/IModelTrackedTrajectory.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/IModelTrackingAlgorithm.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/IObject.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IModel/Serializable.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IView/IView.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IView/IViewGraphicsPixmapItem.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IView/IViewGraphicsScene.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IView/IViewGraphicsView.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IView/IViewMainWindow.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IView/IViewOpenGLWidget.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IView/IViewTrackedComponent.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Interfaces/IView/IViewWidget.h"
+install_headers(
+    HEADERS
+    "Interfaces/API.h"
+    "Interfaces/ENUMS.h"
+    "Interfaces/IBioTrackerContext.h"
+    "Interfaces/IBioTrackerPlugin.h"
+    "Interfaces/IController/IController.h"
+    "Interfaces/IModel/IModel.h"
+    "Interfaces/IModel/IModelAreaDescriptor.h"
+    "Interfaces/IModel/IModelDataExporter.h"
+    "Interfaces/IModel/IModelTrackedComponent.h"
+    "Interfaces/IModel/IModelTrackedComponentFactory.h"
+    "Interfaces/IModel/IModelTrackedTrajectory.h"
+    "Interfaces/IModel/IModelTrackingAlgorithm.h"
+    "Interfaces/IModel/IObject.h"
+    "Interfaces/IModel/Serializable.h"
+    "Interfaces/IView/IView.h"
+    "Interfaces/IView/IViewGraphicsPixmapItem.h"
+    "Interfaces/IView/IViewGraphicsScene.h"
+    "Interfaces/IView/IViewGraphicsView.h"
+    "Interfaces/IView/IViewMainWindow.h"
+    "Interfaces/IView/IViewOpenGLWidget.h"
+    "Interfaces/IView/IViewTrackedComponent.h"
+    "Interfaces/IView/IViewWidget.h"
+    DESTINATION "${INSTALL_INCLUDEDIR}"
 )
+

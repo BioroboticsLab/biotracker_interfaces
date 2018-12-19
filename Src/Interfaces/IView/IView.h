@@ -1,5 +1,4 @@
-#ifndef IVIEW_H
-#define IVIEW_H
+#pragma once
 
 #include "Interfaces/IModel/IModel.h"
 #include "Interfaces/ENUMS.h"
@@ -25,5 +24,3 @@ class BT_INTERFACES_API IView {
     IController *mController;
     IModel *mModel;
 };
-
-#endif // IVIEW_H

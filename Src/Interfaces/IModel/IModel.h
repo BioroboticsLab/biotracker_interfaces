@@ -1,5 +1,4 @@
-#ifndef IMODEL_H
-#define IMODEL_H
+#pragma once
 
 #include <QObject>
 
@@ -17,5 +16,3 @@ class BT_INTERFACES_API IModel : public QObject {
 
   public Q_SLOTS:
 };
-
-#endif // IMODEL_H

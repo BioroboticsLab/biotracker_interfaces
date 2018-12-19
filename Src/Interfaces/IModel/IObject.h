@@ -1,5 +1,4 @@
-#ifndef IOBJECT_H
-#define IOBJECT_H
+#pragma once
 
 #include "Interfaces/IModel/IModel.h"
 
@@ -10,5 +9,3 @@ class BT_INTERFACES_API IObject : public IModel {
   public:
     IObject();
 };
-
-#endif // IOBJECT_H
