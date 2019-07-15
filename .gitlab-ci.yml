@@ -81,7 +81,7 @@ package windows-1809[debug]:
   <<: *package
 
 
-trigger robofish/utility:
+trigger biotracker/utility:
   stage: deploy
   trigger:
     project: bioroboticslab/biotracker/utility
