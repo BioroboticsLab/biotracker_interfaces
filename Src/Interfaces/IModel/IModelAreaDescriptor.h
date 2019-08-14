@@ -2,7 +2,7 @@
 
 #include "IModel.h"
 #include <string.h>
-#include <cv.h>
+#include <opencv2/opencv.hpp>
 
 class BT_INTERFACES_API IModelAreaDescriptor :public IModel
 {

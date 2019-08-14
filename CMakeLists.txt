@@ -16,6 +16,11 @@ set(INSTALL_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME} CACHE STRING
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
 include(Headers)
 
+find_package(OpenCV 4 QUIET)
+if(NOT OpenCV_FOUND)
+    find_package(OpenCV 3 REQUIRED)
+endif()
+
 add_subdirectory(Src)
 
 export(
