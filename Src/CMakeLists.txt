@@ -26,7 +26,6 @@ target_include_directories(${target} PUBLIC
 find_package(Qt5 REQUIRED COMPONENTS Core Gui Widgets OpenGL)
 target_link_libraries(${target}  Qt5::Core Qt5::Gui Qt5::Widgets)
 
-find_package(OpenCV 3 REQUIRED)
 target_link_libraries(${target} ${OpenCV_LIBS})
 
 set_target_properties(${target} PROPERTIES AUTOMOC ON AUTOUIC ON AUTORCC ON)

@@ -44,14 +44,14 @@ private:
     virtual void connectInterfaces();
 
 Q_SIGNALS:
-    virtual void emitCvMat(std::shared_ptr<cv::Mat> mat, QString name) = 0;
-	/**
-	* Will be sent when tracking is doen to multiple components of the core app
-	* An example is the visualisation which is then updated
-	*/
-    virtual void emitTrackingDone(uint framenumber) = 0;
-	virtual void emitChangeDisplayImage(QString str) = 0;
-	virtual void emitCorePermission(std::pair<ENUMS::COREPERMISSIONS, bool>) = 0;
+    void emitCvMat(std::shared_ptr<cv::Mat> mat, QString name);
+    /**
+    * Will be sent when tracking is doen to multiple components of the core app
+    * An example is the visualisation which is then updated
+    */
+    void emitTrackingDone(uint framenumber);
+    void emitChangeDisplayImage(QString str);
+    void emitCorePermission(std::pair<ENUMS::COREPERMISSIONS, bool>);
 
 public Q_SLOTS:
     virtual void receiveCurrentFrameFromMainApp(std::shared_ptr<cv::Mat> mat, uint frameNumber) = 0;
