@@ -45,7 +45,7 @@ private:
     virtual void connectInterfaces();
 
 Q_SIGNALS:
-    void emitCvMat(std::shared_ptr<cv::Mat> mat, QString name);
+    void emitCvMat(cv::Mat mat, QString name);
     /**
      * Will be sent when tracking is doen to multiple components of the core
      * app An example is the visualisation which is then updated
@@ -55,8 +55,8 @@ Q_SIGNALS:
     void emitCorePermission(std::pair<ENUMS::COREPERMISSIONS, bool>);
 
 public Q_SLOTS:
-    virtual void receiveCurrentFrameFromMainApp(std::shared_ptr<cv::Mat> mat,
-                                                uint frameNumber) = 0;
+    virtual void receiveCurrentFrameFromMainApp(cv::Mat mat,
+                                                uint    frameNumber) = 0;
     /**
      * Recieves area descriptor data for rectification (px to cm) and for
      * tracking arena boundary
@@ -64,7 +64,7 @@ public Q_SLOTS:
     virtual void receiveAreaDescriptor(IModelAreaDescriptor* areaDescr);
 
     // private Q_SLOTS:
-    //    virtual void receiveCvMatFromController(std::shared_ptr<cv::Mat> mat,
+    //    virtual void receiveCvMatFromController(cv::Mat mat,
     //    QString name) = 0;
 };
 

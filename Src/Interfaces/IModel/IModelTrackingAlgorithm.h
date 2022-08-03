@@ -9,8 +9,7 @@ class BT_INTERFACES_API IModelTrackingAlgorithm : public IModel
 public:
     IModelTrackingAlgorithm(QObject* parent = 0);
 
-    virtual void doTracking(std::shared_ptr<cv::Mat> image,
-                            uint                     frameNumber) = 0;
+    virtual void doTracking(cv::Mat image, uint frameNumber) = 0;
 
 signals:
     void emitTrackingDone();
