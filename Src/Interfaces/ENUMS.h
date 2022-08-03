@@ -7,7 +7,8 @@ class BT_INTERFACES_API ENUMS : public QObject
 {
     Q_OBJECT
 public:
-    enum CONTROLLERTYPE : unsigned int {
+    enum CONTROLLERTYPE : unsigned int
+    {
         NO_CTR,
         MAINWINDOW,
         TEXTUREOBJECT,
@@ -26,7 +27,8 @@ public:
     };
     Q_ENUM(CONTROLLERTYPE)
 
-    enum COREPERMISSIONS : unsigned int {
+    enum COREPERMISSIONS : unsigned int
+    {
         COMPONENTVIEW,
         COMPONENTMOVE,
         COMPONENTREMOVE,
