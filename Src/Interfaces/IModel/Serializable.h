@@ -8,8 +8,8 @@
 
 class BT_INTERFACES_API Serializable : public IModel
 {
-	Q_OBJECT
+    Q_OBJECT
 };
 
-QDataStream &operator<<(QDataStream &out, const Serializable &data);
-QDataStream &operator>>(QDataStream &in, Serializable &data);
+QDataStream& operator<<(QDataStream& out, const Serializable& data);
+QDataStream& operator>>(QDataStream& in, Serializable& data);

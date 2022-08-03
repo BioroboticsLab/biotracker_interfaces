@@ -3,14 +3,13 @@
 
 int IModelTrackedTrajectory::nextID = -1;
 
-IModelTrackedTrajectory::IModelTrackedTrajectory(QObject *parent) :
-	IModelTrackedComponent(parent)
+IModelTrackedTrajectory::IModelTrackedTrajectory(QObject* parent)
+: IModelTrackedComponent(parent)
 {
-	_id = ++nextID;
+    _id = ++nextID;
 }
 
 void IModelTrackedTrajectory::operate()
 {
-	// please implement this method in an TrackedObject class
-
+    // please implement this method in an TrackedObject class
 }

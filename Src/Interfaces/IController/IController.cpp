@@ -1,25 +1,25 @@
 #include "IController.h"
 
-
-IController::IController(QObject *parent, IBioTrackerContext *context, ENUMS::CONTROLLERTYPE ctr) : QObject(parent),
-    m_BioTrackerContext(context),
-    m_ControllerType(ctr)
+IController::IController(QObject*              parent,
+                         IBioTrackerContext*   context,
+                         ENUMS::CONTROLLERTYPE ctr)
+: QObject(parent)
+, m_BioTrackerContext(context)
+, m_ControllerType(ctr)
 {
-
 }
 
-void IController::cleanup() {
-
+void IController::cleanup()
+{
 }
 
-IBioTrackerContext *IController::getBioTrackerContext()
+IBioTrackerContext* IController::getBioTrackerContext()
 {
     return m_BioTrackerContext.data();
 }
 
 void IController::connectModelToController()
 {
-
 }
 
 void IController::createComponents()
@@ -34,19 +34,23 @@ void IController::connectComponents()
     connectControllerToController();
 }
 
-void IController::addView(IView *view) {
+void IController::addView(IView* view)
+{
     m_View = view;
 }
 
-void IController::addModel(IModel *model) {
+void IController::addModel(IModel* model)
+{
     m_Model = model;
 }
 
-IModel *IController::getModel() {
+IModel* IController::getModel()
+{
     return m_Model.data();
 }
 
-IView *IController::getView() {
+IView* IController::getView()
+{
     return m_View;
 }
 

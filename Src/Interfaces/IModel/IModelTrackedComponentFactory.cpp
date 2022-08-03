@@ -1,25 +1,27 @@
 #include "IModelTrackedComponentFactory.h"
 
-IModelTrackedComponentFactory::IModelTrackedComponentFactory() {
-
+IModelTrackedComponentFactory::IModelTrackedComponentFactory()
+{
 }
 
 IModelTrackedComponentFactory::~IModelTrackedComponentFactory()
 {
-
 }
 
-IModelTrackedComponent *IModelTrackedComponentFactory::getNewTrackedElement(QString name)
+IModelTrackedComponent* IModelTrackedComponentFactory::getNewTrackedElement(
+    QString name)
 {
     return createTrackedElement(name);
 }
 
-IModelTrackedComponent *IModelTrackedComponentFactory::getNewTrackedObject(QString name)
+IModelTrackedComponent* IModelTrackedComponentFactory::getNewTrackedObject(
+    QString name)
 {
     return createTrackedObject(name);
 }
 
-IModelTrackedComponent *IModelTrackedComponentFactory::getNewTrackedTrajectory(QString name)
+IModelTrackedComponent* IModelTrackedComponentFactory::getNewTrackedTrajectory(
+    QString name)
 {
-	return createTrackedTrajectory(name);
+    return createTrackedTrajectory(name);
 }

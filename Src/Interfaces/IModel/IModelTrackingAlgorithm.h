@@ -3,16 +3,16 @@
 #include "IModel.h"
 #include "opencv2/core/core.hpp"
 
-class BT_INTERFACES_API IModelTrackingAlgorithm :public IModel {
+class BT_INTERFACES_API IModelTrackingAlgorithm : public IModel
+{
     Q_OBJECT
-  public:
-    IModelTrackingAlgorithm(QObject *parent = 0);
+public:
+    IModelTrackingAlgorithm(QObject* parent = 0);
 
-    virtual void doTracking(std::shared_ptr<cv::Mat> image, uint frameNumber) = 0;
+    virtual void doTracking(std::shared_ptr<cv::Mat> image,
+                            uint                     frameNumber) = 0;
 
 signals:
     void emitTrackingDone();
-	void emitChangeDisplayImage(QString str);
-
-
+    void emitChangeDisplayImage(QString str);
 };

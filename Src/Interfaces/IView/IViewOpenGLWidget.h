@@ -5,19 +5,22 @@
 #include <QOpenGLTexture>
 #include <QOpenGLFunctions>
 
-
-class BT_INTERFACES_API IViewOpenGLWidget: public QOpenGLWidget, protected QOpenGLFunctions, public IView {
-  public:
-    IViewOpenGLWidget(QWidget *parent = 0, IController *controller = 0, IModel *model = 0);
+class BT_INTERFACES_API IViewOpenGLWidget : public QOpenGLWidget,
+                                            protected QOpenGLFunctions,
+                                            public IView
+{
+public:
+    IViewOpenGLWidget(QWidget*     parent     = 0,
+                      IController* controller = 0,
+                      IModel*      model      = 0);
     ~IViewOpenGLWidget();
 
-    void setNewModel(IModel *model);
+    void setNewModel(IModel* model);
 
-  public Q_SLOTS:
+public Q_SLOTS:
     virtual void getNotified() = 0;
 
-  protected:
+protected:
     void connectModelView();
     void initializeGL() override;
 };
-

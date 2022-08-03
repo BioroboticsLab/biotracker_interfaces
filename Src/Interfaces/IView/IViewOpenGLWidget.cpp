@@ -1,16 +1,20 @@
 #include "IViewOpenGLWidget.h"
 
-IViewOpenGLWidget::IViewOpenGLWidget(QWidget *parent, IController *controller, IModel *model) :
-    QOpenGLWidget(parent),
-    IView(controller) {
+IViewOpenGLWidget::IViewOpenGLWidget(QWidget*     parent,
+                                     IController* controller,
+                                     IModel*      model)
+: QOpenGLWidget(parent)
+, IView(controller)
+{
     setNewModel(model);
 }
 
-IViewOpenGLWidget::~IViewOpenGLWidget() {
-
+IViewOpenGLWidget::~IViewOpenGLWidget()
+{
 }
 
-void IViewOpenGLWidget::setNewModel(IModel *model) {    
+void IViewOpenGLWidget::setNewModel(IModel* model)
+{
     if (getModel() != nullptr) {
         QObject::disconnect(getModel(), 0, this, 0);
     }
@@ -24,10 +28,15 @@ void IViewOpenGLWidget::setNewModel(IModel *model) {
     update();
 }
 
-void IViewOpenGLWidget::connectModelView() {
-    QObject::connect(getModel(), &IModel::notifyView, this, &IViewOpenGLWidget::getNotified);
+void IViewOpenGLWidget::connectModelView()
+{
+    QObject::connect(getModel(),
+                     &IModel::notifyView,
+                     this,
+                     &IViewOpenGLWidget::getNotified);
 }
 
-void IViewOpenGLWidget::initializeGL() {
+void IViewOpenGLWidget::initializeGL()
+{
     connectModelView();
 }

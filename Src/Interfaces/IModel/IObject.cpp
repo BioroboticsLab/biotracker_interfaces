@@ -1,6 +1,6 @@
 #include "IObject.h"
 
-IObject::IObject() :
-    IModel(0) {
-
+IObject::IObject()
+: IModel(0)
+{
 }

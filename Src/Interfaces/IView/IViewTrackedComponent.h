@@ -4,29 +4,33 @@
 #include "QGraphicsObject"
 
 /**
- * This is the common interface for all views representing a TrackedComponents class (IModelTrackedTrajectory and any leaf class).
- * This class is derived from IView from the Model-View-Controller structure and visializes the data from its IModel object.
- * A IViewTrackedComponent has a QGraphicsItem.
+ * This is the common interface for all views representing a TrackedComponents
+ * class (IModelTrackedTrajectory and any leaf class). This class is derived
+ * from IView from the Model-View-Controller structure and visializes the data
+ * from its IModel object. A IViewTrackedComponent has a QGraphicsItem.
  */
 
-class BT_INTERFACES_API IViewTrackedComponent : public QGraphicsObject, public IView
+class BT_INTERFACES_API IViewTrackedComponent : public QGraphicsObject,
+                                                public IView
 {
     Q_OBJECT
 public:
     /**
-     * The constructor hase a QGraphicsItem object as Parent, an IController object as its controller and an IModel object.
+     * The constructor hase a QGraphicsItem object as Parent, an IController
+     * object as its controller and an IModel object.
      */
-    IViewTrackedComponent(QGraphicsItem *parent = 0, IController *controller = 0, IModel *model = 0);
+    IViewTrackedComponent(QGraphicsItem* parent     = 0,
+                          IController*   controller = 0,
+                          IModel*        model      = 0);
     ~IViewTrackedComponent();
 
     // IView interface
 public:
-    void setNewModel(IModel *model) override;
+    void setNewModel(IModel* model) override;
 
 protected:
     void connectModelView() override;
 
 public Q_SLOTS:
-  virtual void getNotified() = 0;
-
+    virtual void getNotified() = 0;
 };
