@@ -13,5 +13,4 @@ public:
 
 signals:
     void emitTrackingDone();
-    void emitChangeDisplayImage(QString str);
 };

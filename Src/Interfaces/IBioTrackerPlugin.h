@@ -1,6 +1,8 @@
 #pragma once
 
-#include "QObject"
+#include <QObject>
+#include <QVector>
+#include <QMap>
 
 #include "Interfaces/IController/IController.h"
 #include "Interfaces/IModel/IModelDataExporter.h"
@@ -18,7 +20,7 @@ public:
     {
     }
 
-    virtual void createPlugin() = 0;
+    virtual void init() = 0;
 
     /**
      * Hook for the tracker options to add to the GUI
@@ -45,13 +47,14 @@ private:
     virtual void connectInterfaces();
 
 Q_SIGNALS:
-    void emitCvMat(cv::Mat mat, QString name);
+    void trackingImageNamesChanged(QVector<QString> imageNames);
+    void trackingImagesChanged(QMap<QString, cv::Mat> images);
+
     /**
      * Will be sent when tracking is doen to multiple components of the core
      * app An example is the visualisation which is then updated
      */
     void emitTrackingDone(uint framenumber);
-    void emitChangeDisplayImage(QString str);
     void emitCorePermission(std::pair<ENUMS::COREPERMISSIONS, bool>);
 
 public Q_SLOTS:
@@ -62,10 +65,6 @@ public Q_SLOTS:
      * tracking arena boundary
      */
     virtual void receiveAreaDescriptor(IModelAreaDescriptor* areaDescr);
-
-    // private Q_SLOTS:
-    //    virtual void receiveCvMatFromController(cv::Mat mat,
-    //    QString name) = 0;
 };
 
 #define IBioTrackerPlugin_iid "de.fu-berlin.mi.biorobotics.IBioTrackerPlugin"
